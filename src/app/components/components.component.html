@@ -1,0 +1,74 @@
+<div class="all">
+
+    <div class="form-container">
+        <h2>Student Register Form</h2>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name"  [(ngModel)]="newStudent.name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Mark</label>
+            <input type="tel" id="phone" name="phone"  [(ngModel)]="newStudent.mark" placeholder="Enter your Mark" required>
+        </div>
+
+        <!-- Laptop Section (multiple laptops)
+        <div id="laptop-section">
+            <div class="laptop-section">
+                <label for="laptop-1">LaptopName</label>
+                <input type="text" id="laptop-1" name="laptop[]" placeholder="Enter Laptop Name" required>
+            </div> -->
+        </div>
+
+        <!-- //    <button type="button" class="add-laptop" onclick="addLaptopField()">Add Laptop</button> -->
+
+        <!-- Submit button -->
+        <button type="submit" (click)="submitStudent(newStudent)">Submit</button>
+    </div>
+
+
+    <br>
+    <table class="table custom-table">
+        <thead>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>Mark</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+        <tbody >
+
+            <!-- ngFor loop to iterate through users -->
+            <tr *ngFor="let student of students">
+                <div style="display:contents" (click)="student.rollno!==undefined ?viewLaptop(student.rollno):null">
+                <td>{{student.rollno }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.mark }}</td>
+               
+                <!-- <td><button (click)="student.rollno!==undefined ?viewLaptop(student.rollno):null">View</button></td> -->
+            </div>
+            <td><button (click)="deleteStudent(student.rollno)">Delete</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr id="laptop">
+                <th>LaptopId</th>
+                <th>LaptopName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let laptops of laptop">
+                <td>{{laptops.lno }}</td>
+                <td>{{laptops.lname }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+<app-view  *ngIf="isSelectStudentId" (closeEvent)="closeModalFromParent()"  [rol]="selectStudentId"></app-view>
