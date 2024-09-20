@@ -12,17 +12,13 @@
             <input type="tel" id="phone" name="phone"  [(ngModel)]="newStudent.mark" placeholder="Enter your Mark" required>
         </div>
 
-        <!-- Laptop Section (multiple laptops)
-        <div id="laptop-section">
-            <div class="laptop-section">
-                <label for="laptop-1">LaptopName</label>
-                <input type="text" id="laptop-1" name="laptop[]" placeholder="Enter Laptop Name" required>
-            </div> -->
-        </div>
+      <!-- Laptop Section (for multiple laptops) -->
+  <div *ngFor="let laptop of newStudent.laptops; let i = index" class="form-group">
+    <label for="laptop-{{ i }}">Laptop Name</label>
+    <input type="text" id="laptop-{{ i }}" [(ngModel)]="laptop.lname" name="laptop[]" placeholder="Enter Laptop Name" required>
+  </div>
 
-        <!-- //    <button type="button" class="add-laptop" onclick="addLaptopField()">Add Laptop</button> -->
-
-        <!-- Submit button -->
+  <button (click)="addLaptop()">Add Laptop</button>
         <button type="submit" (click)="submitStudent(newStudent)">Submit</button>
     </div>
 

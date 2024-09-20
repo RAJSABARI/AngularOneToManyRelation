@@ -14,7 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 export class ComponentsComponent {
   students?: Student[] = [];
 
-  newStudent: Student = {name : '', mark: 0};
+  newStudent: Student = {
+    name: '', mark: 0,
+    laptops: []
+  };
   
   laptop?: Laptop[];
   
@@ -88,8 +91,11 @@ export class ComponentsComponent {
     this.newStudent = {
       name: '',
       mark: 0,
+      laptops: [{ lname: '' }]  
       // Clear laptop fields and initialize with one empty laptop field
     };
   }
-
+  addLaptop() {
+    this.newStudent.laptops.push({ lname: '' });
+  }
 }
